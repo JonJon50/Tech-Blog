@@ -23,3 +23,26 @@ Comment.init(
             allowNull: false,
             defaultValue: DataTypes.NOW,
         },
+        content: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+        },
+        // not sure if this is correct- post 
+        post_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'post',
+                key: 'id',
+            },
+        },
+    },
+    {
+        sequelize,
+        modelName: 'comment',
+        underscored: true,
+        freezeTableName: true,
+        timestamps: false,
+    }
+);
+
+module.exports = Comment;
