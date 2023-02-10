@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { User, Project, Comment } = require('../../models');
+const { User, Post, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 // creates a new post 
 router.post('/', async (req, res) => {
     try {
-        const newProject = await Project.create({ ...req.body, user_id: req.session.user_id, });
-        res.json(newProject);
+        const newPost = await Post.create({ ...req.body, user_id: req.session.user_id, });
+        res.json(newPost);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -14,18 +14,18 @@ router.post('/', async (req, res) => {
 router.delete('/:id', withAuth, async (req, res) => {
     try {
       // check to see if postData okay
-        const projectData = await Project.destroy({
+        const postData = await Post.destroy({
             where: {
                 id: req.params.id,
                 user_id: req.session.user_id,
             },
         });
 
-        if (!projectData) {
+        if (!postData) {
           res.status(404).json({ message: 'There is no post with this id found.' });
           return;
       }
-      res.status(200).json(projectData);
+      res.status(200).json(postData);
   } catch (err) {
       res.status(500).json(err);
   }
@@ -33,7 +33,7 @@ router.delete('/:id', withAuth, async (req, res) => {
 // update a project
 router.put('/:id', async (req, res) => {
   try {
-      const projectData = await Project.update(
+      const postData = await Post.update(
           {
               ...req.body,
               user_id: req.session.user_id,
@@ -46,12 +46,12 @@ router.put('/:id', async (req, res) => {
           }
       );
       // if no post data show a message
-      if (!projectData) {
+      if (!postData) {
           res.status(404).json({ message: 'There is no post with this id found.' });
           return;
       }
 
-      res.status(200).json(projectData);
+      res.status(200).json(postData);
   } catch (err) {
       res.status(500).json(err);
   }

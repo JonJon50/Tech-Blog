@@ -1,21 +1,22 @@
 const router = require('express').Router();
-const { Comment, Project, User } = require('../models');
+const { Comment, Post, User } = require('../models');
 const withAuth = require('../utils/auth');
 // finds all the posts and send them to the homepage
 router.get('/', async (req, res) => {
     // find all the posts and combine them with the users
     try {
-        const projectData = await Project.findAll({
+        const postData = await Post.findAll({
             include: [{ model: User }],
         });
         // make it so template can read it
-        const posts = projectData.map((post) => post.get({ plain: true }));
+        const posts = postData.map((post) => post.get({ plain: true }));
 
-        res.render('all-posts', {
+        res.render('homepage', {
             posts,
             loggedIn: req.session.loggedIn
         });
     } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     }
 });
@@ -25,16 +26,16 @@ router.get('/post/:id', withAuth, async (req, res) => {
     try {
         const commentData = await Comment.findAll({
             where: {
-                project_id: req.params.id 
+                post_id: req.params.id 
             },
             include: [ { model: User }, { model: Post }]
         });
         // finds them all by 
-        const projectData = await Project.findByPk(req.params.id, {
+        const postData = await Post.findByPk(req.params.id, {
             include: [ { model: User } ],
         });
         
-        const project = postData.get({ plain: true });
+        const post = postData.get({ plain: true });
 
         const comments = commentData.map((comment) => comment.get({ plain: true }));
 
