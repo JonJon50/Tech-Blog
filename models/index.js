@@ -1,6 +1,6 @@
 const User = require("./User");
 const Post = require("./post");
-const Comment = require("./Comment");
+const Comment = require("./comment");
 // connect the routes
 Comment.belongsTo(User, {
   foreignKey: "user_id",
