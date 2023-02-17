@@ -1,20 +1,22 @@
-{{#each posts as |post| }}
+{{!-- {{#each posts as |post| }}
 <div class="row mb-5 project">
     <div class="col-md-6">
         <h2>
             <a href="/post/{{post.id}}">{{post.title}}</a>
         </h2>
         {{!-- will show who the username and the day it was made --}}
-        <span>Created by {{post.user.username}} on {{format_date post.date_created}}</span>
+        
     </div>
     <div class="col-md-7">
         <p> {{post.content}}</p>
     {{!-- update and delete button for posts by id--}}
     <a href="/dashboard/update/{{post.id}}"><button class="mt-2 mb-2 update">Update</button></a>
         <button data-id="{{post.id}}" class="mt-2 mb-2 delete">Delete</button>
-    </div>
-</div>
+    </div> --}}
+{{!-- </div> --}}
 {{!-- grabbed  --}}
+<h2>Your now log in.</h2>
+<span>Created by {{post.user.username}} on {{format_date post.date_created}}</span>
 <div class="row mb-4 project mt-5">
     <div class="col-md-5">
         {{!-- area to add new post--}}
@@ -35,6 +37,6 @@
 </div>
 {{!-- links to the new and delete js --}}
 <script src="/js/new.js"></script>
-{{#if posts}}
+{{!-- {{#if posts}} --}}
 <script src="/js/delete.js"></script>
-{{/if}}
+{{!-- {{/if}} --}}

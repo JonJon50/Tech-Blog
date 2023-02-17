@@ -1,0 +1,20 @@
+<h2>You are now logged in!</h2>
+
+<div class="row mb-4 project mt-5">
+    <div class="col-md-5">
+        {{!-- area to add new post--}}
+        <h2>Add Post</h2>
+    </div>
+    <div class="col-md-7">
+        <form>
+            
+            <label>Post Title</label>
+            <input type="text" id="post-title" class="w-100 custom-input-height" value="{{title}}" required>
+            {{!-- can add to the content of the post --}}
+            <label>Post Content</label>
+            <input type="text" id="post-body" class="w-100 custom-input-height" value="{{content}}" required>
+            {{!-- submit button --}}
+            <button id="new-post-form" class="mt-2 mb-2">Submit</button>
+        </form>
+    </div>
+</div>

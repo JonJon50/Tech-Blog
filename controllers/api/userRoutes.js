@@ -4,18 +4,19 @@ const { User, Post } = require('../../models');
 // creates a new user
 router.post('/', async (req, res) => {
     try {
-        const createUserData = await User.create(req.body, {        
+        const createUserData = await User.create({        
             username: req.body.username,
             email: req.body.email,
             password: req.body.password
         });
         // finds the user
-        const userData = await User.findOne({                      
-            where: { username: req.body.username }
-        });
+        // const userData = await User.findOne({                      
+        //     where: { username: req.body.username }
+        // });
         // response of the new user
         req.session.save(() => {
-            req.session.user_id = userData.id;
+            req.session.user_id = createUserData.id;
+            req.session.username = createUserData.username;
             req.session.logged_in = true;
 
             res.status(200).json(createUserData);                   
@@ -27,12 +28,12 @@ router.post('/', async (req, res) => {
 // logs the user in
 router.post('/login', async (req, res) => {
     try {
-        const userData = await User.findOne({ where: { username: req.body.username } });
+        const userData = await User.findOne({ where: { email: req.body.email } });
 
         if (!userData) {
             res
                 .status(400)
-                .json({ message: `Something went wrong please check your email or password and try again.` });
+                .json({ message: `Something went wrong please check your email or password and try again. 1` });
             return;
         }
         // makes sure the user has entered the correct password
@@ -47,6 +48,7 @@ router.post('/login', async (req, res) => {
         // 
         req.session.save(() => {
             req.session.user_id = userData.id;
+            req.session.email = userData.email
             req.session.logged_in = true;
 
             res.json({ user: userData, message: 'Logged in' });
