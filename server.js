@@ -41,6 +41,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
+app.get('/profile', (req, res) => {
+  res.render('profile'); 
+ });
+
+app.get('/contact', (req, res) => {
+    res.render('contact'); 
+    });  
+
+
+
+
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
+
+
+ 
+ 
