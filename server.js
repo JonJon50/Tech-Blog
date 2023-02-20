@@ -45,9 +45,7 @@ app.get('/profile', (req, res) => {
   res.render('profile'); 
  });
 
-app.get('/contact', (req, res) => {
-    res.render('contact'); 
-    });  
+ 
 
 
 
