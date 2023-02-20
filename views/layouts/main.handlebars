@@ -9,26 +9,37 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
-  <div class="flex-column justify-space-around ">
-    <header class="display-flex justify-space-between align-center p-4 custom-bg">
-      <h1 >
-        <i class="fa-solid fa-blog ml-4 text-light"></i>
-        <a href="/" class="text-dark">Tech Blog</a>
-      </h1>
-      {{!-- nav section --}}
-      <nav>
-     {{!-- if the user is logged in display a logout option else have a login button --}}
-        {{#if loggedIn}}
-        <a href="/" class="text-light">home page</a> |
-        <a href="/dashboard" class="text-light">dashboard</a> |
+<body  style="background-image: url('/asset/image/Tech.jpeg');" class="bg-info " >
+  <div class="flex-column justify-space-around  ">
+    <header class="    ">
+       
+       <h2 class=" text-dark nav justify-content-center" >Tech Blog1</h2>   
+      <ul class="nav justify-content-center ">
+         
+  <li class="nav-item ">
+    <a class="nav-link active mr-4 shadow-lg mb-5 " aria-current="page" href="/login">Login</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link shadow-lg" href="#">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link shadow-lg" href="#">Contact</a>
+  </li>
+  
+</ul>
+    </header>  {{!-- nav section --}}
+       {{!-- if the user is logged in display a logout option else have a login button --}} 
+       {{!-- <nav>
+       
+        <a href="/" class="text-light">home page</a> 
+        <a href="/dashboard" class="text-light">dashboard</a> 
         <button class="no-button mr-4 text-light" id="logout">logout</button>
-        {{else}}
-        <a class="mr-4 text-dark" href="/login">login</a>
-        {{/if}}
-      </nav>
-    </header>
-    <main class="container form-style container-fluid mt-5"
+        {{else}}</nav> --}}
+    {{#if loggedIn}}
+        
+    
+   {{/if}}
+    <main class="container form-style container-fluid mt-5".
       {{{ body }}}
     </main>
     <footer>
